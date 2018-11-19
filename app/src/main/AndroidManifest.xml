@@ -20,8 +20,11 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name">
-        </activity>
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name=".AddNewAccountActivity"
+            android:label="@string/title_activity_add_new_account"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

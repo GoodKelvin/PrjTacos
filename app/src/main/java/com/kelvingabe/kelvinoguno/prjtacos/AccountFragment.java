@@ -2,8 +2,6 @@ package com.kelvingabe.kelvinoguno.prjtacos;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,10 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.kelvingabe.kelvinoguno.prjtacos.adapter.MyAccountRecyclerViewAdapter;
 import com.kelvingabe.kelvinoguno.prjtacos.dummy.DummyContent;
 import com.kelvingabe.kelvinoguno.prjtacos.dummy.DummyContent.DummyItem;
-
-import java.util.List;
 
 /**
  * A fragment representing a list of Items.

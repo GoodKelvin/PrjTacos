@@ -1,4 +1,4 @@
-package com.kelvingabe.kelvinoguno.prjtacos;
+package com.kelvingabe.kelvinoguno.prjtacos.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,7 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.kelvingabe.kelvinoguno.prjtacos.TransactionsFragment.OnListFragmentInteractionListener;
+import com.kelvingabe.kelvinoguno.prjtacos.AccountFragment.OnListFragmentInteractionListener;
+import com.kelvingabe.kelvinoguno.prjtacos.R;
 import com.kelvingabe.kelvinoguno.prjtacos.dummy.DummyContent.DummyItem;
 
 import java.util.List;
@@ -16,12 +17,12 @@ import java.util.List;
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MyTransactionRecyclerViewAdapter extends RecyclerView.Adapter<MyTransactionRecyclerViewAdapter.ViewHolder> {
+public class MyAccountRecyclerViewAdapter extends RecyclerView.Adapter<MyAccountRecyclerViewAdapter.ViewHolder> {
 
     private final List<DummyItem> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyTransactionRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public MyAccountRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -29,7 +30,7 @@ public class MyTransactionRecyclerViewAdapter extends RecyclerView.Adapter<MyTra
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_transaction, parent, false);
+                .inflate(R.layout.fragment_account, parent, false);
         return new ViewHolder(view);
     }
 

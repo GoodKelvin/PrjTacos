@@ -10,10 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.kelvingabe.kelvinoguno.prjtacos.adapter.MyTransactionRecyclerViewAdapter;
 import com.kelvingabe.kelvinoguno.prjtacos.dummy.DummyContent;
 import com.kelvingabe.kelvinoguno.prjtacos.dummy.DummyContent.DummyItem;
-
-import java.util.List;
 
 /**
  * A fragment representing a list of Items.

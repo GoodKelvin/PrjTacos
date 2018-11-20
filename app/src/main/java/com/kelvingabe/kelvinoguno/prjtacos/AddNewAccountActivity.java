@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.kelvingabe.kelvinoguno.prjtacos.adapter.NewAccountCountrySpinnerAdapter;
+
 public class AddNewAccountActivity extends AppCompatActivity {
     EditText accountName;
     EditText bankName;
@@ -16,6 +18,8 @@ public class AddNewAccountActivity extends AppCompatActivity {
     Spinner countriesSpinner;
     TextView warningTextView;
     Button saveButton;
+    String[] spinnerTitles;
+    int[] spinnerImages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +27,9 @@ public class AddNewAccountActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_new_account);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        spinnerTitles = new String[]{"Nigeria", "More Countries soon"};
+        spinnerImages = new int[]{R.drawable.nigeria_flag
+                , R.mipmap.ic_launcher};
         initializeUI();
     }
 
@@ -36,6 +42,8 @@ public class AddNewAccountActivity extends AppCompatActivity {
         warningTextView = findViewById(R.id.new_account_warning_textView);
         saveButton = findViewById(R.id.new_account_save_button);
         saveButton.setClickable(false);
+        NewAccountCountrySpinnerAdapter newAccountCountrySpinnerAdapter = new NewAccountCountrySpinnerAdapter(this, spinnerTitles, spinnerImages);
+        countriesSpinner.setAdapter(newAccountCountrySpinnerAdapter);
     }
 
     private void validateAccountName() {

@@ -1,6 +1,9 @@
 package com.kelvingabe.kelvinoguno.prjtacos;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MotionEvent;
@@ -14,6 +17,9 @@ import android.widget.TextView;
 
 import com.kelvingabe.kelvinoguno.prjtacos.adapter.NewAccountCountrySpinnerAdapter;
 import com.kelvingabe.kelvinoguno.prjtacos.database.AppDatabase;
+import com.kelvingabe.kelvinoguno.prjtacos.database.RecipientAccountEntry;
+
+import java.util.List;
 
 public class AddNewAccountActivity extends AppCompatActivity {
     EditText accountName;
@@ -34,8 +40,14 @@ public class AddNewAccountActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mDb = AppDatabase.getInstance(getApplicationContext());
+        MainViewModel mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        mainViewModel.getMovies().observe(this, new Observer<List<RecipientAccountEntry>>() {
+            @Override
+            public void onChanged(@Nullable List<RecipientAccountEntry> movieEntries) {
+                //gridview.setAdapter(new MainGridviewAdapter(FavoriteMoviesActivity.this, movieEntries));
+            }
+        });
         spinnerTitles = new String[]{"Nigeria", "More Countries soon"};
-
         spinnerImages = new int[]{R.drawable.nigeria_flag
                 , R.mipmap.ic_launcher};
         initializeUI();

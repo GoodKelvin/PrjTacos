@@ -22,14 +22,14 @@
             android:layout_weight="2"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:text="Full Name" />
+            android:text="@string/full_name" />
 
         <EditText
             android:id="@+id/new_account_name_editText"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="7"
-            android:hint="Jane Doe"
+            android:hint="@string/enter_full_name_of_account"
             android:inputType="textPersonName" />
     </LinearLayout>
 
@@ -46,7 +46,7 @@
             android:layout_weight="2"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:text="Country" />
+            android:text="@string/country" />
 
         <Spinner
             android:id="@+id/new_account_country_spinner"
@@ -68,15 +68,15 @@
             android:layout_weight="2"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:text="Bank Name" />
+            android:text="@string/bank_name" />
 
-        <EditText
-            android:id="@+id/new_account_bank_editText"
+        <AutoCompleteTextView
+            android:id="@+id/new_account_bank_textView"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="7"
             android:inputType="text"
-            android:hint="Type to search for Bank" />
+            android:hint="@string/type_to_search_for_bank" />
     </LinearLayout>
 
     <LinearLayout
@@ -92,7 +92,7 @@
             android:layout_weight="2"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:text="Account #" />
+            android:text="@string/account" />
 
         <EditText
             android:id="@+id/new_account_number_editText"
@@ -100,7 +100,7 @@
             android:layout_height="match_parent"
             android:layout_weight="7"
             android:inputType="number"
-            android:hint="Enter Account Number" />
+            android:hint="@string/enter_account_number" />
     </LinearLayout>
 
     <LinearLayout
@@ -116,7 +116,7 @@
             android:layout_weight="2"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:text="Re-enter #" />
+            android:text="@string/re_enter" />
 
         <EditText
             android:id="@+id/new_account_number2_editText"
@@ -124,7 +124,7 @@
             android:layout_height="match_parent"
             android:layout_weight="7"
             android:inputType="number"
-            android:hint="Re - Enter Account Number" />
+            android:hint="@string/re_enter_account_number" />
     </LinearLayout>
 
     <TextView
@@ -141,8 +141,9 @@
         android:id="@+id/new_account_save_button"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Save"
+        android:text="@string/save"
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:onClick="onSaveAccountClicked" />
 </LinearLayout>

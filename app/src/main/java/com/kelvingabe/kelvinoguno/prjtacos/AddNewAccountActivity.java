@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.kelvingabe.kelvinoguno.prjtacos.adapter.NewAccountCountrySpinnerAdapter;
 import com.kelvingabe.kelvinoguno.prjtacos.database.AppDatabase;
+import com.kelvingabe.kelvinoguno.prjtacos.database.AppExecutors;
 import com.kelvingabe.kelvinoguno.prjtacos.database.RecipientAccountEntry;
 
 import java.util.List;
@@ -107,7 +108,18 @@ public class AddNewAccountActivity extends AppCompatActivity {
 
     public void onSaveAccountClicked(View v) {
         if (validateAccountName() && validateAccountNumber() && validateAccountNumber2()) {
-
+            String name = accountName.getText().toString();
+            String number = accountNum.getText().toString();
+            String country = getString(R.string.nigeria);
+            String bank = bankName.getText().toString();
+            final RecipientAccountEntry recipientAccountEntry = new RecipientAccountEntry(name.trim(), name, country, bank, number);
+            AppExecutors.getInstance().diskIO().execute(new Runnable() {
+                @Override
+                public void run() {
+                    mDb.recipientAccountDao().insertRecipientAccount(recipientAccountEntry);
+                }
+            });
+            finish();
         } else {
 
         }

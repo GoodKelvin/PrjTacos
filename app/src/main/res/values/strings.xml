@@ -22,6 +22,7 @@
     <string name="error_enter_account_name">Please enter account full name</string>
     <string name="error_enter_account_number">Please enter Account Number</string>
     <string name="error_account_number_match">Account Number must match</string>
+    <string name="nigeria">Nigeria</string>
 
     <string-array name="african_countries_array">
         <item>Nigeria</item>

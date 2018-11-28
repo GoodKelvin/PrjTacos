@@ -1,7 +1,10 @@
 package com.kelvingabe.kelvinoguno.prjtacos;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,8 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.kelvingabe.kelvinoguno.prjtacos.adapter.MyAccountRecyclerViewAdapter;
-import com.kelvingabe.kelvinoguno.prjtacos.dummy.DummyContent;
-import com.kelvingabe.kelvinoguno.prjtacos.dummy.DummyContent.DummyItem;
+import com.kelvingabe.kelvinoguno.prjtacos.database.AppDatabase;
+import com.kelvingabe.kelvinoguno.prjtacos.database.RecipientAccountEntry;
+
+import java.util.List;
 
 /**
  * A fragment representing a list of Items.
@@ -27,6 +32,9 @@ public class AccountFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
+    AppDatabase mDb;
+    MainViewModel mainViewModel;
+    RecyclerView recyclerView;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -52,6 +60,17 @@ public class AccountFragment extends Fragment {
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
+
+    }
+
+    private void initAdapter() {
+        mainViewModel.getMovies().observe(this, new Observer<List<RecipientAccountEntry>>() {
+            @Override
+            public void onChanged(@Nullable List<RecipientAccountEntry> recipientAccountEntries) {
+                //gridview.setAdapter(new MainGridviewAdapter(FavoriteMoviesActivity.this, movieEntries));
+                recyclerView.setAdapter(new MyAccountRecyclerViewAdapter(recipientAccountEntries, mListener));
+            }
+        });
     }
 
     @Override
@@ -62,13 +81,14 @@ public class AccountFragment extends Fragment {
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
+            recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyAccountRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            //recyclerView.setAdapter(new MyAccountRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            initAdapter();
         }
         return view;
     }
@@ -83,7 +103,8 @@ public class AccountFragment extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnListFragmentInteractionListener");
         }
-
+        mDb = AppDatabase.getInstance(context);
+        mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
     }
 
     @Override
@@ -104,6 +125,6 @@ public class AccountFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(RecipientAccountEntry item);
     }
 }

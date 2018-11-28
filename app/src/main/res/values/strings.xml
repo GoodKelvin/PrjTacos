@@ -24,6 +24,10 @@
     <string name="error_account_number_match">Account Number must match</string>
     <string name="nigeria">Nigeria</string>
 
+    <string name="action_settings">Settings</string>
+    <string name="action_search">Search</string>
+    <string name="action_delete">Delete</string>
+
     <string-array name="african_countries_array">
         <item>Nigeria</item>
         <item>Other Countries soon</item>

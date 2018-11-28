@@ -11,10 +11,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.kelvingabe.kelvinoguno.prjtacos.database.AppDatabase;
+import com.kelvingabe.kelvinoguno.prjtacos.database.RecipientAccountEntry;
 import com.kelvingabe.kelvinoguno.prjtacos.dummy.DummyContent;
 
 public class MainActivity extends AppCompatActivity implements HomeFragment.OnFragmentInteractionListener, AccountFragment.OnListFragmentInteractionListener, TransactionsFragment.OnListFragmentInteractionListener {
     FloatingActionButton fab;
+    MainViewModel mainViewModel;
+    AppDatabase mDb;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -42,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
         setContentView(R.layout.activity_main);
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
 
         fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -111,6 +116,11 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
 
     @Override
     public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void onListFragmentInteraction(RecipientAccountEntry item) {
 
     }
 

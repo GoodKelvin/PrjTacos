@@ -19,11 +19,13 @@ import android.widget.EditText;
 import com.kelvingabe.kelvinoguno.prjtacos.adapter.AccountsAdapter;
 import com.kelvingabe.kelvinoguno.prjtacos.database.AppDatabase;
 import com.kelvingabe.kelvinoguno.prjtacos.database.RecipientAccountEntry;
-import com.kelvingabe.kelvinoguno.prjtacos.util.CurrencyConverter;
 import com.kelvingabe.kelvinoguno.prjtacos.util.RecipientAccountInfo;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,7 +40,7 @@ import butterknife.Unbinder;
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements TextWatcher {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -65,7 +67,6 @@ public class HomeFragment extends Fragment {
     private ArrayList<String> accNames;
     private ArrayList<String> accNumbers;
     private ArrayList<String> accBanks;
-    CurrencyConverter currencyConverter = new CurrencyConverter();
 
 
     public HomeFragment() {
@@ -182,24 +183,59 @@ public class HomeFragment extends Fragment {
     }
 
     private void convertInputs() {
-        send_editText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        send_editText.addTextChangedListener(this);
+        receive_editText.addTextChangedListener(this);
+    }
 
-            }
+    private String usdToNaira(String s) {
+        if (!s.trim().isEmpty()) {
+            float f = Float.parseFloat(s) * 350;
+            double num = (int) f;
+            DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
+            formatter.applyPattern("#,###,###,###");
+            String formattedString = formatter.format(num);
+            return formattedString;
+        } else {
+            return "";
+        }
+    }
 
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                //receive_editText.setText("blah");
-            }
+    private String nairaToUSD(String s) {
+        if (!s.trim().isEmpty()) {
+            double f = Double.parseDouble(s) / 350;
+            double num = f;
+            DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
+            formatter.applyPattern("#,###,###,###.##");
+            String formattedString = formatter.format(num);
+            return formattedString;
+        } else {
+            return "";
+        }
+    }
 
-            @Override
-            public void afterTextChanged(Editable editable) {
-                String s = editable.toString();
-                double d = currencyConverter.usdToNaira(Double.parseDouble(s), 0);
-                receive_editText.setText(String.valueOf(d));
-            }
-        });
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+        if (receive_editText.hasFocus()) {
+            send_editText.removeTextChangedListener(this);
+            String s = editable.toString();
+            String d = nairaToUSD(s);
+            send_editText.setText(d);
+        } else if (send_editText.hasFocus()) {
+            receive_editText.removeTextChangedListener(this);
+            String s = editable.toString();
+            String d = usdToNaira(s);
+            receive_editText.setText(d);
+        }
     }
 
     /**
@@ -216,4 +252,5 @@ public class HomeFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
 }

@@ -20,7 +20,7 @@ public class MainViewModel extends AndroidViewModel {
         recipientAccounts = appDatabase.recipientAccountDao().loadAllRecipientAccounts();
     }
 
-    public LiveData<List<RecipientAccountEntry>> getMovies() {
+    public LiveData<List<RecipientAccountEntry>> getRecipientAccounts() {
         if (recipientAccounts == null) {
             appDatabase.recipientAccountDao().loadAllRecipientAccounts();
         }

@@ -64,7 +64,7 @@ public class AccountFragment extends Fragment {
     }
 
     private void initAdapter() {
-        mainViewModel.getMovies().observe(this, new Observer<List<RecipientAccountEntry>>() {
+        mainViewModel.getRecipientAccounts().observe(this, new Observer<List<RecipientAccountEntry>>() {
             @Override
             public void onChanged(@Nullable List<RecipientAccountEntry> recipientAccountEntries) {
                 //gridview.setAdapter(new MainGridviewAdapter(FavoriteMoviesActivity.this, movieEntries));

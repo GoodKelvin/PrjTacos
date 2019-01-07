@@ -42,7 +42,7 @@ public class AddNewAccountActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         mDb = AppDatabase.getInstance(getApplicationContext());
         MainViewModel mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-        mainViewModel.getMovies().observe(this, new Observer<List<RecipientAccountEntry>>() {
+        mainViewModel.getRecipientAccounts().observe(this, new Observer<List<RecipientAccountEntry>>() {
             @Override
             public void onChanged(@Nullable List<RecipientAccountEntry> movieEntries) {
                 //gridview.setAdapter(new MainGridviewAdapter(FavoriteMoviesActivity.this, movieEntries));

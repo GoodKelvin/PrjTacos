@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
     MainViewModel mainViewModel;
     AppDatabase mDb;
 
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 

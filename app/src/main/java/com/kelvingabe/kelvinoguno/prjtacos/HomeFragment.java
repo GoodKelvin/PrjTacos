@@ -1,12 +1,33 @@
 package com.kelvingabe.kelvinoguno.prjtacos;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
+
+import com.kelvingabe.kelvinoguno.prjtacos.adapter.AccountsAdapter;
+import com.kelvingabe.kelvinoguno.prjtacos.database.AppDatabase;
+import com.kelvingabe.kelvinoguno.prjtacos.database.RecipientAccountEntry;
+import com.kelvingabe.kelvinoguno.prjtacos.util.CurrencyConverter;
+import com.kelvingabe.kelvinoguno.prjtacos.util.RecipientAccountInfo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 
 /**
@@ -28,6 +49,24 @@ public class HomeFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private Unbinder unbinder;
+    @BindView(R.id.to_editText)
+    AutoCompleteTextView recipient_name_input;
+
+    @BindView(R.id.send_editText)
+    EditText send_editText;
+
+    @BindView(R.id.receive_editText)
+    EditText receive_editText;
+
+    AppDatabase mDb;
+    MainViewModel mainViewModel;
+    private ArrayList<String> accNames;
+    private ArrayList<String> accNumbers;
+    private ArrayList<String> accBanks;
+    CurrencyConverter currencyConverter = new CurrencyConverter();
+
 
     public HomeFragment() {
         // Required empty public constructor
@@ -63,8 +102,39 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        unbinder = ButterKnife.bind(this, view);
+        return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        configureRecipientInput();
+        convertInputs();
+    }
+
+    protected void configureRecipientInput() {
+        mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        mainViewModel.getRecipientAccounts().observe(this, new Observer<List<RecipientAccountEntry>>() {
+            @Override
+            public void onChanged(@Nullable List<RecipientAccountEntry> movieEntries) {
+                AccountsAdapter adapter = new AccountsAdapter(getActivity(), R.layout.accounts_list_item, makeInfo(movieEntries));
+                adapter.setBank(accBanks);
+                adapter.setAccNumber(accNumbers);
+                recipient_name_input.setAdapter(adapter);
+            }
+        });
+
+        recipient_name_input.setThreshold(0);
+        recipient_name_input.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                recipient_name_input.showDropDown();
+                //validateAccountName();
+                return false;
+            }
+        });
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -89,6 +159,47 @@ public class HomeFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
+    private List<String> makeInfo(List<RecipientAccountEntry> movieEntries) {
+        accNames = new ArrayList<String>();
+        accNumbers = new ArrayList<String>();
+        accBanks = new ArrayList<String>();
+        for (int i = 0; i < movieEntries.size(); i++) {
+            accNames.add(i, movieEntries.get(i).getFull_name());
+            accNumbers.add(i, movieEntries.get(i).getAccount_number());
+            accBanks.add(i, movieEntries.get(i).getBank());
+        }
+        RecipientAccountInfo recipientAccountInfo = new RecipientAccountInfo();
+        recipientAccountInfo.setAccBank(accBanks);
+        return accNames;
+    }
+
+    private void convertInputs() {
+        send_editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                //receive_editText.setText("blah");
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String s = editable.toString();
+                double d = currencyConverter.usdToNaira(Double.parseDouble(s), 0);
+                receive_editText.setText(String.valueOf(d));
+            }
+        });
     }
 
     /**

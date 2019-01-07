@@ -230,11 +230,13 @@ public class HomeFragment extends Fragment implements TextWatcher {
             String s = editable.toString();
             String d = nairaToUSD(s);
             send_editText.setText(d);
+            send_editText.addTextChangedListener(this);
         } else if (send_editText.hasFocus()) {
             receive_editText.removeTextChangedListener(this);
             String s = editable.toString();
             String d = usdToNaira(s);
             receive_editText.setText(d);
+            receive_editText.addTextChangedListener(this);
         }
     }
 

@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_margin="16dp">
 
         <TextView
@@ -22,7 +22,7 @@
         <AutoCompleteTextView
             android:id="@+id/to_editText"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="9"
             android:hint="Recipient's Name" />
     </LinearLayout>
@@ -45,7 +45,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="4"
-            android:hint="$"
+            android:drawableStart="@drawable/ic_dollar_currency_symbol"
             android:inputType="numberDecimal" />
 
         <TextView
@@ -61,7 +61,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="4"
-            android:hint="\u20A6"
+            android:drawableStart="@drawable/ic_nigeria_naira_currency_symbol"
             android:inputType="numberDecimal" />
     </LinearLayout>
 
@@ -79,6 +79,7 @@
         android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:onClick="onSendClicked"
         android:text="Send" />
 
 

@@ -4,13 +4,14 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.kelvingabe.kelvinoguno.prjtacos.database.AppDatabase;
 import com.kelvingabe.kelvinoguno.prjtacos.database.RecipientAccountEntry;
 import com.kelvingabe.kelvinoguno.prjtacos.dummy.DummyContent;
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
     FloatingActionButton fab;
     MainViewModel mainViewModel;
     AppDatabase mDb;
-
+    HomeFragment homeFragment;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
             }
 
             // Create a new Fragment to be placed in the activity layout
-            HomeFragment homeFragment = new HomeFragment();
+            homeFragment = new HomeFragment();
 
             // In case this activity was started with special instructions from an
             // Intent, pass the Intent's extras to the fragment as arguments
@@ -128,5 +129,10 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
     @Override
     public void onListFragmentInteraction(DummyContent.DummyItem item) {
 
+    }
+
+    public void onSendClicked(View view) {
+        homeFragment.onSendClicked(view);
+        startActivity(new Intent(getApplicationContext(), ReviewTransactionActivity.class));
     }
 }

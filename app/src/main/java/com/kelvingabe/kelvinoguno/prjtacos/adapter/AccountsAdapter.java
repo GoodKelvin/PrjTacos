@@ -1,7 +1,6 @@
 package com.kelvingabe.kelvinoguno.prjtacos.adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import com.kelvingabe.kelvinoguno.prjtacos.R;
 import com.kelvingabe.kelvinoguno.prjtacos.util.RecipientAccountInfo;
@@ -26,6 +27,7 @@ public class AccountsAdapter extends ArrayAdapter {
     private List<String> dataListAllItems;
     private List<String> banks;
     private List<String> accNums;
+    private List<String> hybridInfo;
 
 
     public AccountsAdapter(Context context, int resource, List<String> storeDataLst) {
@@ -42,9 +44,9 @@ public class AccountsAdapter extends ArrayAdapter {
 
     @Override
     public String getItem(int position) {
-        Log.d("CustomListAdapter",
+        Log.e("CustomListAdapter",
                 dataList.get(position));
-        return dataList.get(position);
+        return hybridInfo.get(position);
     }
 
     public void setBank(List<String> s) {
@@ -55,6 +57,9 @@ public class AccountsAdapter extends ArrayAdapter {
         this.accNums = s;
     }
 
+    public void setHybridInfo(List<String> s) {
+        this.hybridInfo = s;
+    }
 
     @Override
     public View getView(int position, View view, @NonNull ViewGroup parent) {
@@ -65,7 +70,7 @@ public class AccountsAdapter extends ArrayAdapter {
         }
         RecipientAccountInfo recipientAccountInfo = new RecipientAccountInfo();
         TextView strName = (TextView) view.findViewById(R.id.recipient_name_textView);
-        strName.setText(getItem(position));
+        strName.setText(dataList.get(position));
         TextView strName1 = (TextView) view.findViewById(R.id.recipient_bank_textView);
         strName1.setText(banks.get(position));
 

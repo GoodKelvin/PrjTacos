@@ -27,6 +27,7 @@
     <string name="action_settings">Settings</string>
     <string name="action_search">Search</string>
     <string name="action_delete">Delete</string>
+    <string name="u20a6">₦</string>
 
     <string-array name="african_countries_array">
         <item>Nigeria</item>
@@ -36,4 +37,5 @@
     <string-array name="countries_array">
         <item>United States</item>
     </string-array>
+    <string name="title_activity_review_transaction">ReviewTransactionActivity</string>
 </resources>

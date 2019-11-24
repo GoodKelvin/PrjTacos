@@ -1,6 +1,6 @@
 package com.kelvingabe.kelvinoguno.prjtacos.database;
 
-import android.arch.persistence.room.Dao;
+import androidx.room.Dao;
 
 @Dao
 public interface CardsDao {

@@ -4,11 +4,14 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -21,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
     MainViewModel mainViewModel;
     AppDatabase mDb;
     HomeFragment homeFragment;
+    private Toolbar mToolbar;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -34,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
                 case R.id.navigation_activity:
                     addTransactionFragment();
                     return true;
-                case R.id.navigation_accounts:
+                case R.id.navigation_recipients:
                     addAccountFragment();
                     return true;
             }
@@ -46,6 +50,10 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+
+
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -132,7 +140,16 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
     }
 
     public void onSendClicked(View view) {
-        homeFragment.onSendClicked(view);
-        startActivity(new Intent(getApplicationContext(), ReviewTransactionActivity.class));
+        if (homeFragment.onSendClicked(view)) {
+            homeFragment.marshalData();
+            startActivity(new Intent(getApplicationContext(), ReviewTransactionActivity.class));
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
     }
 }

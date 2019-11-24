@@ -12,8 +12,8 @@
         android:title="@string/title_activity" />
 
     <item
-        android:id="@+id/navigation_accounts"
+        android:id="@+id/navigation_recipients"
         android:icon="@drawable/ic_bank_transfer_in"
-        android:title="@string/title_accounts" />
+        android:title="@string/title_recipients" />
 
 </menu>

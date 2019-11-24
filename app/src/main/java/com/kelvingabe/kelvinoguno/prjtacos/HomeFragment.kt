@@ -15,7 +15,9 @@ import androidx.lifecycle.ViewModelProviders
 import com.kelvingabe.kelvinoguno.prjtacos.adapter.AccountsAdapter
 import com.kelvingabe.kelvinoguno.prjtacos.database.AppDatabase
 import com.kelvingabe.kelvinoguno.prjtacos.database.RecipientAccountEntry
-import com.kelvingabe.kelvinoguno.prjtacos.util.RecipientAccountInfo
+import com.kelvingabe.kelvinoguno.prjtacos.model.App
+import com.kelvingabe.kelvinoguno.prjtacos.model.RecipientAccountInfo
+import com.kelvingabe.kelvinoguno.prjtacos.model.Transaction
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.text.DecimalFormat
 import java.util.*
@@ -31,6 +33,7 @@ class HomeFragment : Fragment(), TextWatcher {
     lateinit var mainViewModel: MainViewModel
     lateinit var accNames: ArrayList<String>
     lateinit var hybridNames: ArrayList<String>
+    lateinit var adapter: AccountsAdapter
     private var accNumbers: ArrayList<String>? = null
     private var accBanks: ArrayList<String>? = null
 
@@ -42,8 +45,10 @@ class HomeFragment : Fragment(), TextWatcher {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         return view
     }
@@ -58,7 +63,8 @@ class HomeFragment : Fragment(), TextWatcher {
     protected fun configureRecipientInput() {
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java!!)
         mainViewModel.recipientAccounts.observe(this, Observer { entries ->
-            val adapter = AccountsAdapter(activity, R.layout.accounts_list_item, makeInfo(entries!!))
+            adapter =
+                AccountsAdapter(activity, R.layout.accounts_list_item, makeInfo(entries!!))
             adapter.setBank(accBanks)
             adapter.setAccNumber(accNumbers)
             adapter.setHybridInfo(hybridNames)
@@ -71,6 +77,10 @@ class HomeFragment : Fragment(), TextWatcher {
             //validateAccountName();
             false
         }
+        to_editText.setOnItemClickListener { parent, view, position, id ->
+            Transaction.receiver_name = hybridNames[position]
+        }
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -119,7 +129,7 @@ class HomeFragment : Fragment(), TextWatcher {
 
     private fun usdToNaira(s: String): String {
         return if (s.trim { it <= ' ' }.isNotEmpty()) {
-            val f = java.lang.Float.parseFloat(s) * 350
+            val f = java.lang.Float.parseFloat(s) * 353
             val decimalFormat = DecimalFormat("#.##")
             val twoDigitsF = java.lang.Float.valueOf(decimalFormat.format(f))
             twoDigitsF.toString()
@@ -128,13 +138,22 @@ class HomeFragment : Fragment(), TextWatcher {
         }
     }
 
-    fun onSendClicked(view: View) {
+    fun onSendClicked(view: View): Boolean {
+        var checkRecipient = App.utils.isEditTextEmpty(to_editText, "Select a recipient")
+        var checkSendAmount = App.utils.isEditTextEmpty(send_editText, "Field cannot be empty")
+        var checkReceiveAmount =
+            App.utils.isEditTextEmpty(receive_editText, "Field cannot be empty")
+        return !(checkRecipient || checkReceiveAmount || checkSendAmount)
+    }
 
+    fun marshalData() {
+        Transaction.receive_amount = receive_editText.text.toString()
+        Transaction.send_amount = send_editText.text.toString()
     }
 
     private fun nairaToUSD(s: String): String {
         return if (s.trim { it <= ' ' }.isNotEmpty()) {
-            val f = java.lang.Double.parseDouble(s) / 350
+            val f = java.lang.Double.parseDouble(s) / 353
             val decimalFormat = DecimalFormat("#.##")
             val twoDigitsF = java.lang.Float.valueOf(decimalFormat.format(f))
             twoDigitsF.toString()

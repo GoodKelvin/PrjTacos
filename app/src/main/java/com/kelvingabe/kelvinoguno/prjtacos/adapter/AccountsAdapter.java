@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.kelvingabe.kelvinoguno.prjtacos.R;
-import com.kelvingabe.kelvinoguno.prjtacos.util.RecipientAccountInfo;
+import com.kelvingabe.kelvinoguno.prjtacos.model.RecipientAccountInfo;
 
 import java.util.ArrayList;
 import java.util.List;

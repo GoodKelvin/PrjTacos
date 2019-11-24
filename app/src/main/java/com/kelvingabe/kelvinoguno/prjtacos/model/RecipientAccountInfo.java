@@ -1,4 +1,4 @@
-package com.kelvingabe.kelvinoguno.prjtacos.util;
+package com.kelvingabe.kelvinoguno.prjtacos.model;
 
 import java.util.List;
 

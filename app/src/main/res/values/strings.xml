@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">PrjTacos</string>
+    <string name="app_name">Zang</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_activity">Activity</string>
     <string name="title_accounts">Accounts</string>
+    <string name="title_recipients">Recipients</string>
     <string name="title_notifications">Notifications</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -38,4 +39,15 @@
         <item>United States</item>
     </string-array>
     <string name="title_activity_review_transaction">ReviewTransactionActivity</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm_transaction">Confirm Transaction</string>
+    <string name="password">Password</string>
+    <string name="pay_with">Pay with</string>
+    <string name="ok">Ok</string>
+    <string name="receive">Receive</string>
+    <string name="send">Send</string>
+    <string name="to">To</string>
+    <string name="logout">Logout</string>
+    <string name="personal_info">Personal Info</string>
+    <string name="banks_and_cards">Banks and Cards</string>
 </resources>

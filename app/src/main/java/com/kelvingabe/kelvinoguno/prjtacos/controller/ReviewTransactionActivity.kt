@@ -1,7 +1,8 @@
-package com.kelvingabe.kelvinoguno.prjtacos
+package com.kelvingabe.kelvinoguno.prjtacos.controller
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.kelvingabe.kelvinoguno.prjtacos.R
 import com.kelvingabe.kelvinoguno.prjtacos.model.Transaction
 import kotlinx.android.synthetic.main.activity_review_transaction.*
 import kotlinx.android.synthetic.main.content_review_transaction.*

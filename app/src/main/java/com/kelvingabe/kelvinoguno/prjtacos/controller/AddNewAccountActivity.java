@@ -1,4 +1,4 @@
-package com.kelvingabe.kelvinoguno.prjtacos;
+package com.kelvingabe.kelvinoguno.prjtacos.controller;
 
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -16,10 +16,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.kelvingabe.kelvinoguno.prjtacos.R;
 import com.kelvingabe.kelvinoguno.prjtacos.adapter.NewAccountCountrySpinnerAdapter;
 import com.kelvingabe.kelvinoguno.prjtacos.database.AppDatabase;
 import com.kelvingabe.kelvinoguno.prjtacos.database.AppExecutors;
 import com.kelvingabe.kelvinoguno.prjtacos.database.RecipientAccountEntry;
+import com.kelvingabe.kelvinoguno.prjtacos.model.MainViewModel;
 
 import java.util.List;
 

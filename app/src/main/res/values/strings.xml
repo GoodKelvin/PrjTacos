@@ -11,7 +11,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_add_new_account">AddNewAccountActivity</string>
     <string name="enter_full_name_of_account">Enter full name of Account</string>
-    <string name="full_name">Full Name</string>
     <string name="country">Country</string>
     <string name="bank_name">Bank Name</string>
     <string name="type_to_search_for_bank">Type to search for Bank</string>
@@ -50,4 +49,8 @@
     <string name="logout">Logout</string>
     <string name="personal_info">Personal Info</string>
     <string name="banks_and_cards">Banks and Cards</string>
+    <string name="title_activity_personal_info">PersonalInfoActivity</string>
+    <string name="full_name">Full Name</string>
+    <string name="email">email</string>
+    <string name="title_activity_bank_card">BankCardActivity</string>
 </resources>

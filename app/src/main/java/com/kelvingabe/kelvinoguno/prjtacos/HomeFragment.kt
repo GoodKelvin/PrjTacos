@@ -16,6 +16,7 @@ import com.kelvingabe.kelvinoguno.prjtacos.adapter.AccountsAdapter
 import com.kelvingabe.kelvinoguno.prjtacos.database.AppDatabase
 import com.kelvingabe.kelvinoguno.prjtacos.database.RecipientAccountEntry
 import com.kelvingabe.kelvinoguno.prjtacos.model.App
+import com.kelvingabe.kelvinoguno.prjtacos.model.MainViewModel
 import com.kelvingabe.kelvinoguno.prjtacos.model.RecipientAccountInfo
 import com.kelvingabe.kelvinoguno.prjtacos.model.Transaction
 import kotlinx.android.synthetic.main.fragment_home.*

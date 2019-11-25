@@ -15,9 +15,14 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.kelvingabe.kelvinoguno.prjtacos.controller.AddNewAccountActivity;
+import com.kelvingabe.kelvinoguno.prjtacos.controller.BankCardActivity;
+import com.kelvingabe.kelvinoguno.prjtacos.controller.PersonalInfoActivity;
+import com.kelvingabe.kelvinoguno.prjtacos.controller.ReviewTransactionActivity;
 import com.kelvingabe.kelvinoguno.prjtacos.database.AppDatabase;
 import com.kelvingabe.kelvinoguno.prjtacos.database.RecipientAccountEntry;
 import com.kelvingabe.kelvinoguno.prjtacos.dummy.DummyContent;
+import com.kelvingabe.kelvinoguno.prjtacos.model.MainViewModel;
 
 public class MainActivity extends AppCompatActivity implements HomeFragment.OnFragmentInteractionListener, AccountFragment.OnListFragmentInteractionListener, TransactionsFragment.OnListFragmentInteractionListener {
     FloatingActionButton fab;
@@ -151,5 +156,34 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_logout:
+                logout();
+                return true;
+            case R.id.action_personal_info:
+                showPersonalInfo();
+                return true;
+            case R.id.action_bank_cards:
+                showBankCards();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void logout() {
+    }
+
+    private void showBankCards() {
+        startActivity(new Intent(getApplicationContext(), BankCardActivity.class));
+    }
+
+    private void showPersonalInfo() {
+        startActivity(new Intent(getApplicationContext(), PersonalInfoActivity.class));
     }
 }

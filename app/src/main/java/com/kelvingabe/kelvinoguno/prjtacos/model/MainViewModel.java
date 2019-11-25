@@ -1,4 +1,4 @@
-package com.kelvingabe.kelvinoguno.prjtacos;
+package com.kelvingabe.kelvinoguno.prjtacos.model;
 
 import android.app.Application;
 

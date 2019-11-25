@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.kelvingabe.kelvinoguno.prjtacos.adapter.MyAccountRecyclerViewAdapter;
 import com.kelvingabe.kelvinoguno.prjtacos.database.AppDatabase;
 import com.kelvingabe.kelvinoguno.prjtacos.database.RecipientAccountEntry;
+import com.kelvingabe.kelvinoguno.prjtacos.model.MainViewModel;
 
 import java.util.List;
 

@@ -8,4 +8,26 @@
     tools:context=".controller.BankCardActivity"
     tools:showIn="@layout/activity_bank_card">
 
+    <include
+        android:id="@+id/bank_card_card_info_layout"
+        layout="@layout/card_information_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <include
+        android:id="@+id/bank_card_billing_address_layout"
+        layout="@layout/billing_address_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/bank_card_card_info_layout" />
+
+    <Button
+        android:id="@+id/bank_card_save_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bank_card_billing_address_layout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

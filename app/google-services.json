@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "960222711501",
+    "firebase_url": "https://zang-kelvox.firebaseio.com",
+    "project_id": "zang-kelvox",
+    "storage_bucket": "zang-kelvox.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:960222711501:android:b8e411425872ebb385e384",
+        "android_client_info": {
+          "package_name": "com.kelvingabe.kelvinoguno.prjtacos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "960222711501-unnmpbkn38dpe131fommttdhehdkpd90.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kelvingabe.kelvinoguno.prjtacos",
+            "certificate_hash": "08ac3d10e70e5de40b26ba3a601bbbe4e650b61a"
+          }
+        },
+        {
+          "client_id": "960222711501-k23d7i8ee4h0cm168ii920ksfdqr0lgt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC60wP9gHA68CfR6G_d9EHkGWXEgz3Hnhw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "960222711501-k23d7i8ee4h0cm168ii920ksfdqr0lgt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

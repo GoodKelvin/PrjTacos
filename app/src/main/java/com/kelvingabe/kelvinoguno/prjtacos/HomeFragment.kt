@@ -79,7 +79,10 @@ class HomeFragment : Fragment(), TextWatcher {
             false
         }
         to_editText.setOnItemClickListener { parent, view, position, id ->
-            Transaction.receiver_name = hybridNames[position]
+            Transaction.receiver_hybrid_name = hybridNames[position]
+            Transaction.receiver_name = accNames[position]
+            Transaction.receiver_bank = accBanks!![position]
+            Transaction.receiver_account_number = accNumbers!![position]
         }
 
     }

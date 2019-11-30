@@ -12,6 +12,7 @@ object Transaction : Parcelable {
     var user_id: String? = null
     var user_name: String? = null
     var receiver_id: String? = null
+    var receiver_hybrid_name: String? = null
     var receiver_name: String? = null
     var receiver_country: String? = "Nigeria"
     var receiver_bank: String? = null

@@ -1,7 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/bank_card_card_information_label_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Debit Card Information" />
+
+    <TextView
+        android:id="@+id/bank_card_card_information_edit_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bank_card_card_information_label_textView"
+        android:layout_marginTop="16dp"
+        android:drawableEnd="@drawable/ic_edit"
+        android:text="Debit Card Information"
+        android:textSize="18sp"
+        android:visibility="invisible" />
+
+    <EditText
+        android:id="@+id/bank_card_card_number_editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bank_card_card_information_label_textView"
+        android:layout_marginTop="16dp"
+        android:hint="Debit Card Number" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bank_card_card_number_editText"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/bank_card_card_expiry_editText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:hint="Expires (MMYY)" />
+
+        <EditText
+            android:id="@+id/bank_card_card_securityCode_editText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:hint="Security Code" />
+    </LinearLayout>
+
+</RelativeLayout>

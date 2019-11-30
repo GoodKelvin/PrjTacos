@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.kelvingabe.kelvinoguno.prjtacos.model.App;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class LaunchActivity extends AppCompatActivity {
     public static final int RC_SIGN_IN = 1;
@@ -68,12 +69,18 @@ public class LaunchActivity extends AppCompatActivity {
     }
 
     private void startLogin() {
+        List<AuthUI.IdpConfig> providers = Arrays.asList(
+                //new AuthUI.IdpConfig.EmailBuilder().build(),
+                new AuthUI.IdpConfig.PhoneBuilder().build(),
+                new AuthUI.IdpConfig.GoogleBuilder().build()//,
+                //new AuthUI.IdpConfig.FacebookBuilder().build(),
+                //new AuthUI.IdpConfig.TwitterBuilder().build()
+        );
         startActivityForResult(
                 AuthUI.getInstance()
                         .createSignInIntentBuilder()
                         .setIsSmartLockEnabled(false)
-                        .setAvailableProviders(Arrays.asList(
-                                new AuthUI.IdpConfig.GoogleBuilder().build()))
+                        .setAvailableProviders(providers)
                         .build(),
                 RC_SIGN_IN);
     }

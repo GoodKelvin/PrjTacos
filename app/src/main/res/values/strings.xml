@@ -27,7 +27,8 @@
     <string name="action_settings">Settings</string>
     <string name="action_search">Search</string>
     <string name="action_delete">Delete</string>
-    <string name="u20a6">₦</string>
+    <string name="naira_sign">₦</string>
+    <string name="USD_sign">$</string>
 
     <string-array name="african_countries_array">
         <item>Nigeria</item>

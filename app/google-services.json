@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "960222711501-87q9smubidrslegd1agv26rb57fjgm06.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kelvingabe.kelvinoguno.prjtacos",
+            "certificate_hash": "9f9e078560b52988b57a93b66ac4dbc191544c27"
+          }
+        },
+        {
           "client_id": "960222711501-unnmpbkn38dpe131fommttdhehdkpd90.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

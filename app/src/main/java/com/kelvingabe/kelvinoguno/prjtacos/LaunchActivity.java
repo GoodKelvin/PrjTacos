@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.kelvingabe.kelvinoguno.prjtacos.model.App;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class LaunchActivity extends AppCompatActivity {
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     private String mUserId;
+    List<String> whitelistedCountries = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,9 +71,15 @@ public class LaunchActivity extends AppCompatActivity {
     }
 
     private void startLogin() {
+        whitelistedCountries.add("us");
+        whitelistedCountries.add("ca");
+        whitelistedCountries.add("mx");
+        whitelistedCountries.add("vi");
+        whitelistedCountries.add("+234");
+
         List<AuthUI.IdpConfig> providers = Arrays.asList(
                 //new AuthUI.IdpConfig.EmailBuilder().build(),
-                new AuthUI.IdpConfig.PhoneBuilder().build(),
+                new AuthUI.IdpConfig.PhoneBuilder().setWhitelistedCountries(whitelistedCountries).build(),
                 new AuthUI.IdpConfig.GoogleBuilder().build()//,
                 //new AuthUI.IdpConfig.FacebookBuilder().build(),
                 //new AuthUI.IdpConfig.TwitterBuilder().build()
